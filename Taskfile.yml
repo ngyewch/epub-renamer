@@ -1,0 +1,42 @@
+version: 3
+
+tasks:
+  clean:
+    desc: Clean
+    cmds:
+      - rm -rf dist
+
+  build:
+    desc: Build
+    cmds:
+      - goreleaser release --clean --skip=validate
+
+  release:
+    desc: Release
+    cmds:
+      - goreleaser release --clean
+
+  build-single-target:
+    desc: Build single target
+    cmds:
+      - goreleaser build --snapshot --single-target  --clean --output dist/epub-renamer
+
+  test:
+    desc: Test
+    deps: [ build-single-target ]
+    cmds:
+      - dist/epub-renamer scan workspace/inputs workspace/output.csv
+      - dist/epub-renamer rename workspace/output.csv workspace/outputs
+
+  dependencyUpdates:
+    desc: Show dependency updates
+    aliases: [ outdated ]
+    cmds:
+      - go mod download
+      - go mod tidy
+      - go list -u -m -json all | go-mod-outdated -update -direct
+
+  mingo:
+    cmds:
+      - mise exec go@1.25.6 -- mise install 'go:github.com/bobg/mingo/cmd/mingo@0.14.0'
+      - mise exec 'go:github.com/bobg/mingo/cmd/mingo@0.14.0' -- mingo -tests -v

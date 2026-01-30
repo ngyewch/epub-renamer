@@ -1,0 +1,3 @@
+useOriginalDirectoryLayout: true
+filenameTemplateParts:
+  - '{{ .Metadata.Creator }} - {{ .Metadata.Title }}'
