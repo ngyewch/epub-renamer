@@ -56,9 +56,6 @@ var (
 				Name:   "rename",
 				Usage:  "rename",
 				Action: doRename,
-				Flags: []cli.Flag{
-					configFileFlag,
-				},
 				Arguments: []cli.Argument{
 					inputFileArg,
 					outputDirArg,
