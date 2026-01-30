@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/csv"
+	"log/slog"
 	"os"
 	"path/filepath"
 	"text/template"
@@ -50,7 +51,10 @@ func doScan(ctx context.Context, cmd *cli.Command) error {
 
 		err = scanner.ScanFile(path, relativePath)
 		if err != nil {
-			return err
+			slog.Error("scan error",
+				slog.String("relativePath", relativePath),
+				slog.Any("err", err),
+			)
 		}
 
 		return nil
