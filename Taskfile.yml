@@ -27,7 +27,7 @@ tasks:
     cmds:
       - rm -rf workspace/output.csv workspace/outputs
       - dist/epub-renamer scan workspace/inputs workspace/output.csv
-      - dist/epub-renamer rename workspace/output.csv workspace/outputs
+      - dist/epub-renamer rename workspace/inputs workspace/output.csv workspace/outputs
 
   dependencyUpdates:
     desc: Show dependency updates

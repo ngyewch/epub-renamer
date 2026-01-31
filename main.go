@@ -57,6 +57,7 @@ var (
 				Usage:  "rename",
 				Action: doRename,
 				Arguments: []cli.Argument{
+					inputDirArg,
 					inputFileArg,
 					outputDirArg,
 				},

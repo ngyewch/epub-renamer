@@ -4,6 +4,7 @@ import (
 	"bytes"
 	"context"
 	"encoding/csv"
+	"fmt"
 	"log/slog"
 	"os"
 	"path/filepath"
@@ -17,6 +18,13 @@ import (
 func doScan(ctx context.Context, cmd *cli.Command) error {
 	inputDir := cmd.StringArg(inputDirArg.Name)
 	outputFile := cmd.StringArg(outputFileArg.Name)
+
+	if inputDir == "" {
+		return fmt.Errorf("input-dir is required")
+	}
+	if outputFile == "" {
+		return fmt.Errorf("output-file is required")
+	}
 
 	config, err := getConfig(ctx, cmd)
 	if err != nil {
