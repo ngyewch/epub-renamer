@@ -17,20 +17,10 @@ jobs:
       - name: mise install
         uses: jdx/mise-action@v3
         with:
-          version: 2026.1.0
+          version: 2026.1.9
           install: true
           cache: true
           experimental: true
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-
-      - name: mise install
-        uses: jdx/mise-action@v3
-        with:
-          version: 2026.1.0
-          install: true
-          cache: true
-          experimental: true
-          working_directory: ui
           github_token: ${{ secrets.GITHUB_TOKEN }}
 
       - name: Run GoReleaser (release)
